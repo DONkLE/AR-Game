@@ -33,7 +33,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.ide.visualstudio": {
-      "version": "2.0.9",
+      "version": "2.0.11",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -44,13 +44,6 @@
     "com.unity.ide.vscode": {
       "version": "1.2.3",
       "depth": 0,
-      "source": "registry",
-      "dependencies": {},
-      "url": "https://packages.unity.com"
-    },
-    "com.unity.inputsystem": {
-      "version": "1.0.2",
-      "depth": 1,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
@@ -95,6 +88,15 @@
       "depth": 1,
       "source": "registry",
       "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.postprocessing": {
+      "version": "3.1.1",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.modules.physics": "1.0.0"
+      },
       "url": "https://packages.unity.com"
     },
     "com.unity.render-pipelines.core": {
@@ -245,19 +247,6 @@
       },
       "url": "https://packages.unity.com"
     },
-    "com.unity.xr.interaction.toolkit": {
-      "version": "1.0.0-pre.5",
-      "depth": 0,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.inputsystem": "1.0.2",
-        "com.unity.ugui": "1.0.0",
-        "com.unity.modules.audio": "1.0.0",
-        "com.unity.modules.imgui": "1.0.0",
-        "com.unity.xr.legacyinputhelpers": "2.1.7"
-      },
-      "url": "https://packages.unity.com"
-    },
     "com.unity.xr.interactionsubsystems": {
       "version": "1.0.1",
       "depth": 1,
@@ -293,7 +282,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.xr.management": {
-      "version": "4.0.6",
+      "version": "4.0.7",
       "depth": 0,
       "source": "registry",
       "dependencies": {

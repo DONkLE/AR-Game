@@ -211,9 +211,7 @@ namespace Photon.Realtime
         /// <summary>Realtime apps are for gaming / interaction. Also used by PUN 2.</summary>
         Realtime,
         /// <summary>Voice apps stream audio.</summary>
-        Voice,
-        /// <summary>Fusion clients are for matchmaking and relay in Photon Fusion.</summary>
-        Fusion
+        Voice
     }
 
     /// <summary>
@@ -855,7 +853,7 @@ namespace Photon.Realtime
         {
             if (this.LoadBalancingPeer.PeerState != PeerStateValue.Disconnected)
             {
-                this.DebugReturn(DebugLevel.WARNING, "ConnectUsingSettings() failed. Can only connect while in state 'Disconnected'. Current state: " + this.LoadBalancingPeer.PeerState);
+                Debug.LogWarning("ConnectUsingSettings() failed. Can only connect while in state 'Disconnected'. Current state: " + this.LoadBalancingPeer.PeerState);
                 return false;
             }
 
@@ -865,19 +863,7 @@ namespace Photon.Realtime
                 return false;
             }
 
-            switch (this.ClientType)
-            {
-                case ClientAppType.Realtime:
-                    this.AppId = appSettings.AppIdRealtime;
-                    break;
-                case ClientAppType.Voice: 
-                    this.AppId = appSettings.AppIdVoice;
-                    break;
-                case ClientAppType.Fusion:
-                    this.AppId = appSettings.AppIdFusion;
-                    break;
-            }
-
+            this.AppId = this.ClientType == ClientAppType.Realtime ? appSettings.AppIdRealtime : appSettings.AppIdVoice;
             this.AppVersion = appSettings.AppVersion;
 
             this.IsUsingNameServer = appSettings.UseNameServer;
@@ -964,7 +950,7 @@ namespace Photon.Realtime
         {
             if (this.LoadBalancingPeer.PeerState != PeerStateValue.Disconnected)
             {
-                this.DebugReturn(DebugLevel.WARNING, "ConnectToMasterServer() failed. Can only connect while in state 'Disconnected'. Current state: " + this.LoadBalancingPeer.PeerState);
+                Debug.LogWarning("ConnectToMasterServer() failed. Can only connect while in state 'Disconnected'. Current state: " + this.LoadBalancingPeer.PeerState);
                 return false;
             }
 
@@ -1000,7 +986,7 @@ namespace Photon.Realtime
         {
             if (this.LoadBalancingPeer.PeerState != PeerStateValue.Disconnected)
             {
-                this.DebugReturn(DebugLevel.WARNING, "ConnectToNameServer() failed. Can only connect while in state 'Disconnected'. Current state: " + this.LoadBalancingPeer.PeerState);
+                Debug.LogWarning("ConnectToNameServer() failed. Can only connect while in state 'Disconnected'. Current state: " + this.LoadBalancingPeer.PeerState);
                 return false;
             }
 
@@ -1208,10 +1194,10 @@ namespace Photon.Realtime
         {
             if (this.LoadBalancingPeer.PeerState != PeerStateValue.Disconnected)
             {
-                this.DebugReturn(DebugLevel.WARNING, "ReconnectToMaster() failed. Can only connect while in state 'Disconnected'. Current state: " + this.LoadBalancingPeer.PeerState);
+                Debug.LogWarning("ReconnectToMaster() failed. Can only connect while in state 'Disconnected'. Current state: " + this.LoadBalancingPeer.PeerState);
                 return false;
             }
-
+            
             if (string.IsNullOrEmpty(this.MasterServerAddress))
             {
                 this.DebugReturn(DebugLevel.WARNING, "ReconnectToMaster() failed. MasterServerAddress is null or empty.");
@@ -1245,7 +1231,7 @@ namespace Photon.Realtime
         {
             if (this.LoadBalancingPeer.PeerState != PeerStateValue.Disconnected)
             {
-                this.DebugReturn(DebugLevel.WARNING, "ReconnectAndRejoin() failed. Can only connect while in state 'Disconnected'. Current state: " + this.LoadBalancingPeer.PeerState);
+                Debug.LogWarning("ReconnectAndRejoin() failed. Can only connect while in state 'Disconnected'. Current state: " + this.LoadBalancingPeer.PeerState);
                 return false;
             }
 
@@ -1285,10 +1271,6 @@ namespace Photon.Realtime
 
         /// <summary>Disconnects the peer from a server or stays disconnected. If the client / peer was connected, a callback will be triggered.</summary>
         /// <remarks>
-        /// Disconnect will attempt to notify the server of the client closing the connection.
-        /// 
-        /// Clients that are in a room, will leave the room. If the room's playerTTL &gt; 0, the player will just become inactive (and may rejoin).
-        /// 
         /// This method will not change the current State, if this client State is PeerCreated, Disconnecting or Disconnected.
         /// In those cases, there is also no callback for the disconnect. The DisconnectedCause will only change if the client was connected.
         /// </remarks>
@@ -1367,7 +1349,6 @@ namespace Photon.Realtime
             if (this.IsUsingNameServer && this.Server != ServerConnection.NameServer && (this.AuthValues == null || this.AuthValues.Token == null))
             {
                 this.DebugReturn(DebugLevel.ERROR, "Authenticate without Token is only allowed on Name Server. Connecting to: " + this.Server + " on: " + this.CurrentServerAddress + ". State: " + this.State);
-                return false;
             }
 
             if (this.AuthMode == AuthModeOption.Auth)
@@ -2664,7 +2645,6 @@ namespace Photon.Realtime
                                 case ErrorCode.MaxCcuReached:
                                     this.DisconnectedCause = DisconnectCause.MaxCcuReached;
                                     break;
-                                case ErrorCode.InvalidOperation:
                                 case ErrorCode.OperationNotAllowedInCurrentState:
                                     this.DisconnectedCause = DisconnectCause.OperationNotAllowedInCurrentState;
                                     break;
