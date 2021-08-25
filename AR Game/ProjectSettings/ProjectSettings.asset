@@ -618,7 +618,7 @@ PlayerSettings:
   webGLThreadsSupport: 0
   webGLDecompressionFallback: 0
   scriptingDefineSymbols:
-    1: UNITY_POST_PROCESSING_STACK_V2
+    1: UNITY_POST_PROCESSING_STACK_V2;BOLT_CLOUD;BOLT_1_3_OR_NEWER
     7: UNITY_POST_PROCESSING_STACK_V2;BOLT_CLOUD;BOLT_1_3_OR_NEWER
     13: UNITY_POST_PROCESSING_STACK_V2
     14: UNITY_POST_PROCESSING_STACK_V2
@@ -726,7 +726,7 @@ PlayerSettings:
     m_VersionCode: 1
     m_VersionName: 
   apiCompatibilityLevel: 6
-  activeInputHandler: 0
+  activeInputHandler: 1
   cloudProjectId: 4e0460bf-b4f8-4b3c-bd60-b526057bced6
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
