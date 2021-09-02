@@ -35,3 +35,4 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+AR Game/ProjectSettings/ARCoreExtensionsProjectSettings.json
