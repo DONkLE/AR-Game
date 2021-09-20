@@ -29,13 +29,20 @@ public class Cannon : MonoBehaviour
     private void Update()
     {
         localCamera.transform.forward = direction;
+
+        if (cloudAnchor.GetType() != typeof(ARCloudAnchor))
+        {
+            cloudAnchor = FindObjectOfType<ARCloudAnchor>();
+        }
     }
 
     void FireButtonPressed()
     {
+
         Rigidbody clone;
         clone = Instantiate(projectile, localCamera.transform.position, localCamera.transform.rotation);
         clone.velocity = direction * projectileForce;
+        clone.transform.parent = cloudAnchor.transform;
 
     }
 
