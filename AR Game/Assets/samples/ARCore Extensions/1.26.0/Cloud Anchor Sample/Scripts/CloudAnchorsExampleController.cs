@@ -397,11 +397,12 @@ namespace Google.XR.ARCoreExtensions.Samples.CloudAnchors
             {
                 // The first touch on the Hosting mode will instantiate the origin anchor. Any
                 // subsequent touch will instantiate a star, both in Hosting and Resolving modes.
-                if (CanPlaceStars())
+                /*if (CanPlaceStars())
                 {
                     InstantiateStar(ToWorldOriginPose(hitResults[0].pose));
                 }
-                else if (!IsOriginPlaced && _currentMode == ApplicationMode.Hosting)
+                */
+                /*else*/ if (!IsOriginPlaced && _currentMode == ApplicationMode.Hosting)
                 {
                     ARPlane plane = PlaneManager.GetPlane(hitResults[0].trackableId);
                     if (plane == null)

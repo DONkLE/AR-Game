@@ -30,10 +30,11 @@ public class Cannon : MonoBehaviour
     {
         localCamera.transform.forward = direction;
 
-        if (cloudAnchor.GetType() != typeof(ARCloudAnchor))
+       /* if (cloudAnchor.GetType() != typeof(ARCloudAnchor))
         {
             cloudAnchor = FindObjectOfType<ARCloudAnchor>();
         }
+        */
     }
 
     void FireButtonPressed()
@@ -42,7 +43,7 @@ public class Cannon : MonoBehaviour
         Rigidbody clone;
         clone = Instantiate(projectile, localCamera.transform.position, localCamera.transform.rotation);
         clone.velocity = direction * projectileForce;
-        clone.transform.parent = cloudAnchor.transform;
+       /* clone.transform.parent = cloudAnchor.transform; */
 
     }
 
